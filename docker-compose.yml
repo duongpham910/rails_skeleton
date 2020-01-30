@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  web:
+    build: .
+    stdin_open: true
+    tty: true
+    container_name: rails_skeleton_web
+    ports:
+      - "3001:3000"
+    volumes:
+      - .:/rails_skeleton
+    depends_on:
+      - database
+    environment:
+      - TZ=Asia/Tokyo
+  database:
+    image: mysql:5.7
+    container_name: rails_skeleton_database
+    command:
+      [
+        "mysqld",
+        "--character-set-server=utf8mb4",
+        "--collation-server=utf8mb4_unicode_ci",
+        "--init-connect='SET NAMES UTF8; SET CHARACTER SET utf8mb4;'",
+      ]
+    volumes:
+      - "./docker/database:/var/lib/mysql"
+      - "./docker/my.cnf:/etc/mysql/my.cnf"
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
