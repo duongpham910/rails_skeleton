@@ -15,8 +15,8 @@ gem "jbuilder", "~> 2.5"
 gem "bootsnap", ">= 1.1.0", require: false
 
 group :development, :test do
-  gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
-  #more gem
+  gem "byebug", platforms: %i[mri mingw x64_mingw]
+  # more gem
   gem "pry-rails"
   gem "rubocop-rails"
 end
@@ -28,4 +28,4 @@ group :development do
   gem "spring-watcher-listen", "~> 2.0.0"
 end
 
-gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
