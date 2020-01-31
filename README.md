@@ -1,24 +1,71 @@
-# README
+# RAILS SKELETON
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Build environment
 
-Things you may want to cover:
+### Development (Docker)
 
-* Ruby version
+1. Clone and enter project's folder
 
-* System dependencies
+   ```console
+   git clone # using SSH or HTTPS method
+   cd rails_skeleton
+   ```
 
-* Configuration
+2. Config database and credentials
 
-* Database creation
+   ```console
+   cp config/database.yml.example config/database.yml
+   cp config/master.key.example config/master.key
+   ```
 
-* Database initialization
+3. Create MYSQL config file
 
-* How to run the test suite
+   ```console
+   touch docker/my.cnf
+   ```
 
-* Services (job queues, cache servers, search engines, etc.)
+4. Build and run docker
 
-* Deployment instructions
+   a. Builds, (re)creates, starts, and attaches to containers for a service
 
-* ...
+   ```console
+   chmod +x ./docker/scripts/docker-entrypoint.sh
+   docker-compose up -d && docker attach $(docker-compose ps -q web)
+   ```
+
+   b. Open docker container bash
+
+   Open new tab in terminal
+
+   ```console
+   docker-compose exec web bash
+   ```
+
+   c. Generate dummy data.
+
+   ```console
+   rails db:create db:migrate
+   ```
+5. When docker is running, open <http://localhost:3001>
+
+### Staging
+
+- TO BE CONTINUED
+
+### Production
+
+#### Setup Puma service
+
+```console
+rails setup:puma_service
+```
+
+## Code Quality Assurance
+
+Run each of these commands then fix any problem that appears
+
+```console
+rubocop
+rails_best_practices .
+brakeman
+```
