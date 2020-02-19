@@ -45,6 +45,6 @@ RUN bundle install
 # Copy project to Docker container
 COPY . /rails_skeleton
 
-# Startup command
+# Startup command (remmeber to give permission)
 ENTRYPOINT ["./docker/scripts/docker-entrypoint.sh"]
 CMD ["sh", "-c", "bundle install && yarn install && bin/rails s -b 0.0.0.0"]

@@ -25,7 +25,9 @@ services:
         "--init-connect='SET NAMES UTF8; SET CHARACTER SET utf8mb4;'",
       ]
     volumes:
+      # create sym link between host and container
       - "./docker/database:/var/lib/mysql"
+      # touch docker/my.cnf
       - "./docker/my.cnf:/etc/mysql/my.cnf"
     environment:
       MYSQL_ROOT_PASSWORD: 123456
